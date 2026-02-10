@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journée Nationale IA 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* Menu style */
+.nav-link {
+    padding: 0.6rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #2d2070;
+    transition: all 0.25s ease;
+}
+.nav-link:hover {
+    background-color: rgba(154, 75, 255, 0.10);
+    color: #6b46c1;
+}
+
+/* Section frame: reuse hero look for other cards */
+.section-frame,
+.rounded-xl.border-2 {
+    background-color: #ffffff !important;
+    border: 1px solid #e6e6e9 !important;
+    box-shadow: 0 10px 24px rgba(2,6,23,0.06) !important;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+/* Make the main rounded-xl cards span the same horizontal length as the hero
+   (hero uses `mx-6` + inner max-w-6xl). This breaks them out of centered
+   containers and gives them viewport-width minus the same side gap. */
+.rounded-xl.section-frame,
+.rounded-xl.border-2.section-frame {
+    width: calc(100vw - 3rem) !important; /* 100vw minus 2 * 1.5rem (mx-6) */
+    margin-left: calc(50% - 50vw + 1.5rem) !important;
+    margin-right: calc(50% - 50vw + 1.5rem) !important;
+    max-width: none !important;
+}
+
+/* Hover/active effect matching hero: slight lift + stronger shadow + subtle purple ring */
+.rounded-xl.border-2:hover,
+.section-frame:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 48px rgba(45,32,112,0.10) !important;
+    border-color: rgba(45,32,112,0.06) !important;
+}
+
+/* Make titles that were white become dark purple inside frames */
+.rounded-xl .text-slate-50,
+.section-frame .text-slate-50,
+.rounded-xl .text-slate-100 {
+    color: #2d2070 !important;
+}
+
+/* Improve readability for secondary/description text inside white cards */
+.rounded-xl.border-2 .text-slate-300,
+.section-frame .text-slate-300 {
+    color: #6b7280 !important; /* slate-600-ish for good contrast on white */
+}
+
+/* Ensure headings inside frames use the dark purple when not already set */
+.rounded-xl.border-2 h3,
+.rounded-xl.border-2 h4,
+.section-frame h3,
+.section-frame h4 {
+    color: #2d2070 !important;
+}
+
+/* Replace gradient circular accents with solid dark purple */
+[class*="from-[#8B5CF6]"][class*="to-[#A855F7]"],
+[class*="from-\#8B5CF6"][class*="to-\#A855F7"] {
+    background-image: none !important;
+    background-color: #2d2070 !important;
+    box-shadow: 0 0 0 4px rgba(45,32,112,0.12) !important;
+}
+
+/* Force removal of gradient/background utilities on rounded cards (make them white like the hero) */
+.rounded-xl[class*="bg-gradient-to-"],
+.rounded-xl[class*="from-"],
+.rounded-xl[class*="via-"],
+.rounded-xl[class*="to-"] {
+    background-image: none !important;
+    background-color: #ffffff !important;
+    border-color: #e6e6e9 !important;
+}
+
+/* Also target rounded-lg small cards used in grids/lists */
+.rounded-lg[class*="bg-gradient-to-"],
+.rounded-lg[class*="from-"],
+.rounded-lg[class*="via-"],
+.rounded-lg[class*="to-"],
+.rounded-lg[class*="bg-\#"] {
+    background-image: none !important;
+    background-color: #ffffff !important;
+    border-color: #e6e6e9 !important;
+}
+
+/* If elements used custom hex backgrounds like bg-[#2A143F]/40, force them to white when they are cards */
+[class*="bg-[#2A143F]"] {
+    background-image: none !important;
+    background-color: #ffffff !important;
+}
+
+/* Slightly larger nav links (fallback for elements without nav-link class) */
+.hidden.md\:flex .px-3 { padding: 0.6rem 1rem; font-size: 0.875rem; }
+</style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+<!-- HEADER + NAVBAR -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+        <!-- Logo + Title -->
+        <div class="flex items-center gap-4">
+            <img src="logoJSNAIFE26.png" class="h-12 w-auto" alt="Logo"/>
+            <div class="flex flex-col leading-none">
+                <span class="text-[#2d2070] font-extrabold text-xl sm:text-2xl font-poppins tracking-tight">
+                    JSNIAFE
+                </span>
+                <span class="text-[#7e53df] font-extrabold text-xl sm:text-2xl font-poppins tracking-tight">
+                    2026
+                </span>
+            </div>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-1">
+            <a href="#about" class="nav-link">À propos</a>
+            <a href="#coord" class="nav-link">Coordinateur</a>
+            <a href="#speakers" class="nav-link">Conférenciers</a>
+            <a href="#committe" class="nav-link">Comités</a>
+            <a href="#programme" class="nav-link">Programme</a>
+        </div>
+
+        <!-- Mobile Button -->
+        <button class="md:hidden text-[#9a4bff] text-2xl">☰</button>
+    </nav>
+</header>
+
+
+
+    <!-- HERO (cadre coloré) -->
+<section id="hero"
+    class="relative overflow-hidden rounded-xl mx-6 mt-8 shadow-lg bg-white border border-slate-200">
+
+    <div class="relative max-w-6xl mx-auto px-6 py-20 text-center">
+
+        <!-- Badge -->
+        <p class="text-xs sm:text-sm font-semibold tracking-[0.28em] uppercase text-[#9a4bff] mb-6">
+            Journée nationale sur l'Intelligence Artificielle 2026
+        </p>
+
+        <!-- Title -->
+        <h1 class="text-lg sm:text-xl lg:text-3xl xl:text-4xl font-extrabold text-[#2d2070] leading-tight font-poppins">
+            Journée nationale sur <br class="hidden sm:block">
+            <span class="block text-[#7e53df] text-xl sm:text-2xl lg:text-3xl xl:text-5xl mt-2">
+                l’Intelligence Artificielle
+            </span>
+        </h1>
+
+        <!-- Logo -->
+        <div class="flex justify-center mt-10">
+            <img src="123er.png"
+                 class="h-36 sm:h-44 md:h-52 lg:h-60 xl:h-64 w-auto"
+                 alt="Logo">
+        </div>
+
+        <!-- Subtitle -->
+        <p class="mt-8 text-base sm:text-lg md:text-xl font-medium text-slate-600">
+            Prompts, Applications et Innovation
+        </p>
+
+        <!-- Date CTA -->
+        <div class="mt-10">
+            <a href="#appel-a-participation"
+               class="inline-flex items-center justify-center px-10 py-3 rounded-full bg-[#7e53df] hover:bg-[#9a4bff] text-white font-semibold shadow-lg transition">
+                11 février 2026
+            </a>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+    <!-- APPEL À PARTICIPATION -->
+    <section id="appel-a-participation" class="relative max-w-6xl mx-auto py-16 lg:py-20">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6 font-poppins">
+            À Propos de La Journée Scientifique Nationale IA For Everyone
+        </h2>
+
+    <div class="rounded-xl border-2 section-frame p-6 mb-12">
+            <p class="text-slate-50 leading-relaxed mb-4">
+                La Journée Scientifique Nationale <span class="text-[#A855F7] font-bold">AI For Everyone</span> est un événement académique et scientifique dédié à la promotion, à la vulgarisation et au partage des connaissances autour de l'Intelligence Artificielle (IA). Elle vise à réunir chercheurs, enseignants, doctorants, étudiants, afin d'échanger sur les avancées récentes, les applications innovantes et les enjeux actuels de l'IA dans différents domaines.
+            </p>
+            
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                Cette journée constitue une plateforme d'échange et de réflexion favorisant l'interdisciplinarité, l'innovation et le transfert de connaissances, tout en mettant en lumière le rôle stratégique de l'Intelligence Artificielle dans le développement scientifique, technologique et socio-économique.
+            </p>
+
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                À travers des conférences, des ateliers, des présentations de travaux de recherche et des discussions ouvertes, <span class="text-[#A855F7] font-bold">IA For Everyone</span> ambitionne de rendre l'IA accessible à tous, de stimuler la recherche et l'innovation, et d'encourager l'émergence de nouvelles perspectives dans les domaines de l'éducation, de l'industrie, de la santé, des services et de la société en général.
+            </p>
+            
+            <!-- SOUMISSION DES RÉSUMÉS SECTION -->
+            <div class="border-t border-slate-700/50 pt-6 mt-6">
+                <h3 class="text-lg font-semibold text-slate-50 mb-4 font-poppins">
+                    Soumission des résumés
+                </h3>
+                <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-3">
+                    Les participants sont invités à soumettre un résumé portant sur l'IA dans tout domaine (technique ou non technique).
+                </p>
+                
+                <div class="space-y-2 mb-4">
+                    <p class="text-sm text-slate-300">• Découverte et utilisation des outils d'IA (ChatGPT, Gemini, Copilot, etc.)</p>
+                    <p class="text-sm text-slate-300">• IA générative & modèles de langage (LLM, ChatGPT, etc.)</p>
+                    <p class="text-sm text-slate-300">• Traitement du langage naturel (NLP)</p>
+                    <p class="text-sm text-slate-300">• Vision par ordinateur & apprentissage profond</p>
+                    <p class="text-sm text-slate-300">• IA dans l'enseignement, l'évaluation et l'accompagnement pédagogique</p>
+                    <p class="text-sm text-slate-300">• IA & éthique, responsabilité et esprit critique</p>
+                    <p class="text-sm text-slate-300">• IA pour la décision, la gestion, l'innovation et les organisations</p>
+                    <p class="text-sm text-slate-300">• IA dans la santé, la psychologie et les sciences humaines</p>
+                    <p class="text-sm text-slate-300">• Communication, médias, créativité & IA</p>
+                    <p class="text-sm text-slate-300">• Tous les domaines sont les bienvenus.</p>
+                </div>
+                
+                <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-3">
+                    Ce qui compte est le lien avec l'usage, l'impact ou la réflexion autour de l'IA.
+                </p>
+            </div>
+                                                <!-- ORGANISÉ PAR SECTION -->
+            <div class="border-t border-slate-700/50 pt-4 mt-4">
+                <h3 class="text-lg font-semibold text-slate-50 mb-3 font-poppins">
+                    Organisé par
+                </h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Row 1 -->
+                    <div class="flex justify-center">
+                        <img src="1-removebg-preview (1).png" alt="Logo 1" class="h-40 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity drop-shadow-2xl" />
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="2-removebg-preview.png" alt="Logo 2" class="h-40 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity drop-shadow-2xl" />
+                    </div>
+                    
+                    <!-- Row 2 -->
+                    <div class="flex justify-center">
+                        <img src="unnamed-removebg-preview.png" alt="Logo 3" class="h-40 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity drop-shadow-2xl" />
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="logo-ensiasd-1.png" alt="Logo 4" class="h-40 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity drop-shadow-2xl" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COORDINATEUR -->
+    <section id="coordinateur" class="relative max-w-6xl mx-auto py-16 lg:py-20">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6 font-poppins">
+            Coordinateur Principal — JSNIAFE'26
+        </h2>
+
+    <div class="rounded-xl border-2 section-frame p-6">
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex-shrink-0">
+                    <img src="Pr. Hamza HAMOUT.png" alt="Pr. Hamza HAMOUT" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80"/>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-slate-50 mb-2">Pr. Hamza HAMOUT</h3>
+                    <p class="text-base font-semibold text-[#A855F7] mb-1">Maître de Conférences Habilité</p>
+                    <p class="text-slate-50 leading-relaxed mb-4">École Supérieure de Technologie — Université Ibn Zohr (Guelmim)</p>
+                    <p class="text-base font-semibold text-[#A855F7] mb-1">Responsable scientifique et organisationnel de l'événement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Les autres sections comme COMITÉS, PROGRAMME, etc., suivent exactement le même principe -->
+
+<!-- INTERVENANTS -->
+        <section
+            id="intervenants"
+            data-section
+            class="relative"
+            aria-labelledby="intervenants-title"
+        >
+            <div class="max-w-6xl mx-auto py-16 lg:py-20">
+                <div class="max-w-6xl mx-auto">
+                    <h2
+                        id="intervenants-title"
+                        class="text-2xl font-bold text-slate-900 mb-6 font-poppins"
+                    >
+                        Conférenciers invités
+                    </h2>
+                    <div class="space-y-6">
+                          <!-- Speaker 8: Pr. Tarik AIT BAHA -->
+                        <article class="rounded-xl border-2 section-frame p-6">
+                            <div class="flex flex-col md:flex-row gap-6">
+                                <div class="flex-shrink-0">
+                                    <img src="Pr. Tarik AIT BAHA.jpeg" alt="Pr. Tarik AIT BAHA" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-slate-50 mb-1">
+                                        Pr. Tarik AIT BAHA
+                                    </h3>
+                                    <p class="text-base  font-semibold text-[#A855F7] mb-1">
+                                        Maître de Conférence
+                                    </p>
+                                    <p class="text-slate-50 leading-relaxed mb-4">
+                                        École Supérieure de Technologie, Université Ibn Zohr, Guelmim
+                                    </p>
+                                    <div class="mb-4">
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Titre
+                                        </h4>
+                                        <p class="text-base font-semibold text-slate-50">
+                                            L'IA dans l'éducation : Open TutorAI pour un apprentissage accessible, ouvert et centré sur l'humain
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Résumé
+                                        </h4>
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+                                            L'intelligence artificielle transforme rapidement l'éducation en redéfinissant l'accès, le partage et la personnalisation des connaissances. Au-delà de l'automatisation, l'IA ouvre de nouvelles perspectives pour créer des environnements d'apprentissage plus inclusifs, adaptatifs et centrés sur les besoins humains.
+                                        </p>
+
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+                                            Cette présentation introduit Open TutorAI, une plateforme open source extensible de tutorat conversationnel basée sur de grands modèles de langage (LLM). Conçu pour accompagner apprenants et enseignants, Open TutorAI propose des explications personnalisées, un dialogue interactif et un retour d'information en temps réel grâce à l'interaction en langage naturel et à des avatars 3D personnalisables.
+                                        </p>
+
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+                                            La présentation met en lumière comment les systèmes de tutorat pilotés par l'IA peuvent améliorer l'accès à une éducation de qualité, soutenir les enseignants dans leurs pratiques pédagogiques et permettre aux apprenants de s'impliquer activement dans leur parcours d'apprentissage. En privilégiant l'ouverture, la transparence et une conception centrée sur l'humain, Open TutorAI démontre que l'IA peut être un véritable compagnon d'apprentissage, et non un substitut aux enseignants.
+                                        </p>
+
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+                                            Ce projet illustre une vision pratique de l'IA dans l'éducation pour tous, où les systèmes intelligents contribuent à l'équité, à la confiance et à l'apprentissage continu dans divers contextes éducatifs.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article><!-- For members WITHOUT photos - Colored circle with initials --> 
+                        <!-- Speaker 3: Pr. Zahra OUGHANNOU -->
+                        <article class="rounded-xl border-2 section-frame p-6">
+                            <div class="flex flex-col md:flex-row gap-6">
+                                <div class="flex-shrink-0">
+                                    <img src="Pr. Zahra OUGHANNOU.jpeg" alt="Pr. Zahra OUGHANNOU" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-slate-50 mb-1">
+                                        Pr. Zahra OUGHANNOU
+                                    </h3>
+                                    <p class="text-base  font-semibold text-[#A855F7] mb-1">
+                                        Maître de Conférence
+                                    </p>
+                                    <p class="text-slate-50 leading-relaxed mb-4">
+                                        École Supérieure de Technologie, université Ibn Zohr, Guelmim
+                                    </p>
+                                    <div class="mb-4">
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Titre
+                                        </h4>
+                                        <p class="text-base font-semibold text-slate-50">
+                                            L'Intelligence Artificielle au service de la sécurité de l'IoT : Détection intelligente des cyberattaques dans les réseaux connectés
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Résumé
+                                        </h4>
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+                                            Cette intervention présente comment l'intelligence artificielle, à travers le machine learning et le deep learning, contribue à renforcer la sécurité de l'Internet des Objets en détectant efficacement les cyberattaques. Elle met en lumière des approches intelligentes appliquées aux réseaux connectés pour rendre l'IoT plus sûr et fiable.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Speaker 4: Dr. Zakaria EL RHADIOUINI -->
+                        <article class="rounded-xl border-2 section-frame p-6">
+                            <div class="flex flex-col md:flex-row gap-6">
+                                <div class="flex-shrink-0">
+                                    <img src="Dr. Zakaria EL RHADIOUINI.jpeg" alt="Dr. Zakaria EL RHADIOUINI" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-slate-50 mb-1">
+                                        Dr. Zakaria EL RHADIOUINI
+                                    </h3>
+                                    <p class="text-base  font-semibold text-[#A855F7] mb-1">
+                                        Docteur
+                                    </p>
+                                    <p class="text-slate-50 leading-relaxed mb-4">
+                                        Faculté des Sciences, Université Ibn Tofail, Kénitra
+                                    </p>
+                                    <div class="mb-4">
+                                        <h4 class="text-sm font-semibold text-[#A855F7] mb-1">
+                                            Titre
+                                        </h4>
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+                                            Des amorces aux possibilités : comprendre l'IA générative
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Résumé
+                                        </h4>
+                                        <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+Découvrez comment l'IA générative révolutionne notre façon de créer, de l'écriture à l'art en passant par le code et la musique. Nous explorerons le fonctionnement de ces systèmes, leurs possibilités (et leurs limites), et comment chacun peut commencer à les utiliser dès aujourd'hui.                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Speaker 5: Pr. Adnane EL MRABTY -->
+                        <article class="rounded-xl border-2 section-frame p-6">
+                            <div class="flex flex-col md:flex-row gap-6">
+                                <div class="flex-shrink-0">
+                                    <img src="Pr. Adnane EL MRABTY.jpeg" alt="Pr. Adnane EL MRABTY" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-slate-50 mb-1">
+                                        Pr. Adnane EL MRABTY
+                                    </h3>
+                                    <p class="text-base  font-semibold text-[#A855F7] mb-1">
+                                        Maître de Conférences Habilité
+                                    </p>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Chef de département Technique Managementes
+                                    </p>
+                                    <p class="text-slate-50 leading-relaxed mb-4">
+                                        École Supérieure de Technologie, université Ibn Zohr, Guelmim
+                                    </p>
+                                    <div class="mb-4">
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Titre
+                                        </h4>
+                                        <p class="text-base font-semibold text-slate-50">
+                                            Fondements Probabilistes et Statistiques de l'Intelligence Artificielle : une Analyse Conceptuelle
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Résumé
+                                        </h4>
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+                                            Cette communication présente une analyse des fondements probabilistes et statistiques de l'intelligence artificielle, en mettant en évidence le rôle des probabilités dans la modélisation de l'incertitude et l'apprentissage à partir de données.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Speaker 6: Pr. Nour EL HOUDA CHAOUI -->
+                        <article class="rounded-xl border-2 section-frame p-6">
+                            <div class="flex flex-col md:flex-row gap-6">
+                                <div class="flex-shrink-0">
+                                    <img src="Pr. Nour El Houda Chaoui.jpeg" alt="Pr. Nour EL HOUDA CHAOUI" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-slate-50 mb-1">
+                                        Pr. Nour EL HOUDA CHAOUI
+                                    </h3>
+                                    <p class="text-base  font-semibold text-[#A855F7] mb-1">
+                                        Professeur d'Enseignement Supérieur
+                                    </p>
+                                    <p class="text-slate-50 leading-relaxed mb-4">
+                                        École Supérieure de Technologie, Université Ibn Tofail, Kénitra
+                                    </p>
+                                    <div class="mb-4">
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Titre
+                                        </h4>
+                                        <p class="text-base font-semibold text-slate-50">
+ L’intelligence Artificielle pour tous : Opportunités, défis et impacts socio-économiques                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Résumé
+                                        </h4>
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+Cette journée scientifique nationale permettra de poser un cadre global et de créer une transition naturelle vers les autres présentations spécialisées en explorant le rôle stratégique de l’IA dans la transformation des sociétés et des économies. Elle abordera : Les grands enjeux de l’IA aujourd’hui(innovation, éthique, inclusion et gouvernance). Comment l’IA transforme différents secteurs (éducation, santé, industrie, services, sécurité). Les opportunités de démocratisation de l’IA et l’importance de la rendre accessible à tous, des étudiants aux décideurs. Les défis et perspectives pour les chercheurs et professionnels du futur.                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Speaker 7: Pr. Yassine OUKDACH -->
+                        <article class="rounded-xl border-2 section-frame p-6">
+                            <div class="flex flex-col md:flex-row gap-6">
+                                <div class="flex-shrink-0">
+                                    <img src="Pr. Yassin OUKDACH.jpeg" alt="Pr. Yassine OUKDACH" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-slate-50 mb-1">
+                                        Pr. Yassine OUKDACH
+                                    </h3>
+                                    <p class="text-base  font-semibold text-[#A855F7] mb-1">
+                                        Maître de Conférence
+                                    </p>
+                                    <p class="text-slate-50 leading-relaxed mb-4">
+                                        Faculté des Sciences (Centre-Excellence) d'Agadir, Université Ibn Zohr, Guelmim
+                                    </p>
+                                    <div class="mb-4">
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Titre
+                                        </h4>
+                                        <p class="text-base font-semibold text-slate-50">
+                                            L'essor de la médecine intelligente : l'impact de l'IA sur les soins de santé modernes
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Résumé
+                                        </h4>
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+                                            L'Intelligence Artificielle (IA) transforme rapidement le domaine de la santé en améliorant le diagnostic, le traitement et la prise en charge des patients. La médecine intelligente s'appuie sur les technologies de l'IA pour analyser de grandes quantités de données médicales, détecter les maladies plus tôt et aider les médecins à prendre de meilleures décisions. De l'imagerie médicale à la prédiction des maladies, en passant par la personnalisation des traitements et la gestion hospitalière, l'IA contribue à rendre les soins plus précis, plus rapides et plus efficaces. Cet article explore comment l'IA révolutionne la médecine traditionnelle et ouvre la voie à une nouvelle ère de soins de santé intelligents.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                      
+                        <!-- Speaker 9: Ing. Zakaria OLAMINE -->
+                        <article class="rounded-xl border-2 section-frame p-6">
+                            <div class="flex flex-col md:flex-row gap-6">
+                                <div class="flex-shrink-0">
+                                    <img src="Ing. Zakaria Olamine.png" alt="Ing. Zakaria OLAMINE" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-slate-50 mb-1">
+                                        Ing. Zakaria OLAMINE
+                                    </h3>
+                                    <p class="text-base  font-semibold text-[#A855F7] mb-1">
+                                        Ingénieur
+                                    </p>
+                                    <div class="mb-4">
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Titre
+                                        </h4>
+                                        <p class="text-base font-semibold text-slate-50">
+                                            Applications pratiques de l'intelligence artificielle dans l'ingénierie moderne
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Résumé
+                                        </h4>
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+                                            Cette intervention met en lumière le rôle croissant de l'intelligence artificielle dans les projets d'ingénierie, en illustrant comment les modèles de machine learning peuvent optimiser la conception, la performance, et la prise de décision. Des exemples d'applications industrielles seront présentés afin de montrer la manière dont l'IA est progressivement intégrée dans les processus techniques et productifs.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- Speaker 1: Pr. Saadia CHABEL -->
+                        <article class="rounded-xl border-2 section-frame p-6">
+                            <div class="flex flex-col md:flex-row gap-6">
+                                <div class="flex-shrink-0">
+    <div class="h-28 w-28 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] flex items-center justify-center border-2 border-slate-100/80">
+        <span class="text-white text-2xl font-bold">SC</span>
+    </div>
+</div>  
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-slate-50 mb-1">
+                                        Pr. Saadia CHABEL
+                                    </h3>
+                                    <p class="text-base  font-semibold text-[#A855F7] mb-1">
+                                        Maître de Conférences Habilité
+                                    </p>
+                                    <p class="text-slate-50 leading-relaxed mb-4">
+                                        École Supérieure de Technologie, Université Ibn Zohr, Guelmim
+                                    </p>
+                                    <div class="mb-4">
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Titre
+                                        </h4>
+                                        <p class="text-base font-semibold text-slate-50">
+                                            Quand l'IA rencontre le management logistique: enseignements du tri intelligent des vaccins
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Résumé
+                                        </h4>
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+                                            Dans cette intervention, nous présentons une avancée significative dans l'optimisation des chaînes logistiques médicales grâce à l'intégration de l'Artificial Intelligence of Things (AIoT) et des robots mobiles autonomes. Face aux défis critiques du transport et du tri des vaccins — exigences de rapidité, de fiabilité, de traçabilité et de respect de la chaîne du froid — deux stratégies innovantes de tri rapide, QSS1 et QSS2, sont mises en œuvre au sein d'une plateforme intelligente de tri basée sur l'AIoT.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Speaker 2: Pr. Rajae BENSOLTANE -->
+                        <article class="rounded-xl border-2 section-frame p-6">
+                            <div class="flex flex-col md:flex-row gap-6">
+                                <div class="flex-shrink-0">
+    <div class="h-28 w-28 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] flex items-center justify-center border-2 border-slate-100/80">
+        <span class="text-white text-2xl font-bold">RB</span>
+    </div>
+</div>  
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-slate-50 mb-1">
+                                        Pr. Rajae BENSOLTANE
+                                    </h3>
+                                    <p class="text-base  font-semibold text-[#A855F7] mb-1">
+                                        Maître de Conférence
+                                    </p>
+                                    <p class="text-slate-50 leading-relaxed mb-4">
+                                        Faculté des Sciences d'Agadir, Université Ibn Zohr, Guelmim
+                                    </p>
+                                    <div class="mb-4">
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Titre
+                                        </h4>
+                                        <p class="text-base font-semibold text-slate-50">
+                                            NLP à l'ère de l'IA : Nouvelles Frontières et Applications
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-base  font-semibold text-[#A855F7] mb-1">
+                                            Résumé
+                                        </h4>
+                                        <p class="text-slate-50 leading-relaxed mb-4">
+                                            La présentation introduit le Traitement Automatique du Langage Naturel (NLP), son évolution des méthodes à base de règles vers le Machine Learning, le Deep Learning et les Transformers, ainsi que ses principales applications. Elle met en évidence les étapes de prétraitement, les solutions IA modernes, et discute les défis et perspectives du NLP à l'ère de l'intelligence artificielle.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMITÉS -->
+        <section
+            id="comites"
+            data-section
+            class="relative"
+            aria-labelledby="comites-title"
+        >
+            <div class="max-w-6xl mx-auto py-16 lg:py-20">
+                <div class="max-w-6xl mx-auto">
+                    <h2
+                        id="comites-title"
+                        class="text-2xl font-bold text-slate-900 mb-6 font-poppins"
+                    >
+                        Comités
+                    </h2>
+
+                    <div class="space-y-8">
+                                              <!-- Comité d'organisation -->
+                        <div class="rounded-xl border-2 section-frame p-6">
+                            <h3 class="text-xl font-semibold text-slate-50 mb-4 font-poppins">
+                                Comité d'organisation
+                            </h3>
+                            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <!-- Pr. Mohamed TIFROUTE - sans photo -->
+                                        <div class="h-28 w-28 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] flex items-center justify-center border-2 border-slate-100/80">
+                                            <span class="text-white text-2xl font-bold">MT</span>
+                                        </div>
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Pr. Mohamed TIFROUTE
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Professeur
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <!-- Pr. Adnane EL MRABTY - avec photo -->
+                                        <img src="Pr. Adnane EL MRABTY.jpeg" alt="Pr. Adnane EL MRABTY" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Pr. Adnane EL MRABTY
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Professeur
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <!-- Pr. Zahra OUGHANNOU - avec photo -->
+                                        <img src="Pr. Zahra OUGHANNOU.jpeg" alt="Pr. Zahra OUGHANNOU" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Pr. Zahra OUGHANNOU
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Professeur
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <!-- Pr. Rachid AHDID - avec photo -->
+                                        <img src="Pr. Rachid Ahdid.jpeg" alt="Pr. Rachid AHDID" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Pr. Rachid AHDID
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Professeur
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <!-- Pr. Hamza HAMOUT - avec photo -->
+                                        <img src="Pr. Hamza HAMOUT.png" alt="Pr. Hamza HAMOUT" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Pr. Hamza HAMOUT
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Professeur
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <!-- Pr. Ibtissam CHOUJÂ - avec photo -->
+                                        <img src="Pr. Ibtissam Chouja.jpeg" alt="Pr. Ibtissam CHOUJÂ" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Pr. Ibtissam CHOUJÂ
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Professeur
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <!-- Pr. Saadia CHABEL - sans photo -->
+                                        <div class="h-28 w-28 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] flex items-center justify-center border-2 border-slate-100/80">
+                                            <span class="text-white text-2xl font-bold">SC</span>
+                                        </div>
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Pr. Saadia CHABEL
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Professeur
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <!-- Pr. Tarik AIT BAHA - avec photo -->
+                                        <img src="Pr. Tarik AIT BAHA.jpeg" alt="Pr. Tarik AIT BAHA" class="h-28 w-28 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Pr. Tarik AIT BAHA
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Professeur
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                                   
+                        <!-- Comité d'organisations estudiantines -->
+                        <div class="rounded-xl border-2 section-frame p-6">
+                            <h3 class="text-xl font-semibold text-slate-50 mb-4 font-poppins">
+                                Comité d'organisations estudiantines (Informatique ESTG)
+                            </h3>
+                            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="koukou.jpg" alt="Mr. Achraf KOUKOU" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Achraf KOUKOU
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="taha-bihmouten.jpg" alt="Mr. Ayman TAHA BIHMOUTEN" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Ayman TAHA BIHMOUTEN
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="el-azzaouy.jpg" alt="Mr. Abdessamad EL-AZZAOUY" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Abdessamad EL-AZZAOUY
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="kadoua.jpg" alt="Mme. Fadma KADOUA" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mme. Fadma KADOUA
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiante
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="mohssine.jpg" alt="Mme. Douae MOHSSINE" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mme. Douae MOHSSINE
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiante
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border section-frame">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="jirar.jpg" alt="Mme. Chams-Eddouha JIRAR" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mme. Chams-Eddouha JIRAR
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiante
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="laared.jpg" alt="Mme. Marwa LAARED" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mme. Marwa LAARED
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiante
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="aoubayd.jpg" alt="Mme. Marwa AOUBAYD" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mme. Marwa AOUBAYD
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiante
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="el-abbaoui.jpg" alt="Mr. Souhail EL ABBAOUI" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Souhail EL ABBAOUI
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="el-gadrouri.jpg" alt="Mr. Hamza EL GADROURI" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Hamza EL GADROURI
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="zouyghy.jpg" alt="Mme. Imane ZOUYGHY" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mme. Imane ZOUYGHY
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiante
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="adraraz.jpg" alt="Mme. Fatima ADRRAZ" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mme. Fatima ADRRAZ
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiante
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="idihia.jpg" alt="Mme. Fatima Ezzahra IDIHIA" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mme. Fatima Ezzahra IDIHIA
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiante
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="mouflih.jpg" alt="Mme. Wiam El mouflih" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mme. Wiam El mouflih
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiante
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="olamine.jpg" alt="Mr. Zakaria OLAMINE" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Zakaria OLAMINE
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="hamdaoui.jpg" alt="Mr. Anas HAMDAOUI" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Anas HAMDAOUI
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="cherradi.jpg" alt="Mr. Bilal CHERRADI" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Bilal CHERRADI
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="el-arfaoui.jpg" alt="Mr. Hamza EL ARFAOUI" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Hamza EL ARFAOUI
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="ait-addi.jpg" alt="Mr. Yassine AIT ADDI" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Yassine AIT ADDI
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="ben-mansour.jpg" alt="Mr. Youssef BEN MANSOUR" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Youssef BEN MANSOUR
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                                <div class="text-center p-4 rounded-lg border border-slate-700/50 bg-[#2A143F]/40">
+                                    <div class="flex justify-center mb-3">
+                                        <img src="boujnouni.jpg" alt="Mr. Youssef BOUJNOUNI" class="h-16 w-16 rounded-full object-cover border-2 border-slate-100/80" />
+                                    </div>
+                                    <h4 class="mb-1 text-base font-semibold text-slate-50">
+                                        Mr. Youssef BOUJNOUNI
+                                    </h4>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                                        Étudiant
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>   
+                       
+        <!-- PROGRAMME -->
+        <section
+            id="programme"
+            data-section
+            class="relative"
+            aria-labelledby="programme-title"
+        >
+            <div class="max-w-6xl mx-auto py-16 lg:py-20">
+                <div class="max-w-6xl mx-auto">
+                    <h2
+                        id="programme-title"
+                        class="text-2xl font-bold text-slate-900 mb-6 font-poppins"
+                    >
+                        Programme
+                    </h2>
+
+                    <div class="rounded-xl border-2 section-frame p-6">
+
+                        <div class="relative border-l-2 border-[#8B5CF6]/60 pl-6 sm:pl-8 text-sm">
+                            <div class="space-y-8">
+                                <div class="relative">
+                                    <div class="absolute -left-[1.69rem] sm:-left-[2.19rem] h-3 w-3 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] shadow-[0_0_0_4px_rgba(139,92,246,0.25)]"></div>
+                                    <p class="text-base font-semibold text-[#A855F7]">09h00 – 09h30</p>
+                                    <h3 class="text-base font-semibold text-slate-50 mb-1">Cérémonie d'ouverture</h3>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">Accueil des participants et discours d'ouverture de la journée.</p>
+                                </div>
+
+                                <div class="relative">
+                                    <div class="absolute -left-[1.69rem] sm:-left-[2.19rem] h-3 w-3 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] shadow-[0_0_0_4px_rgba(139,92,246,0.25)]"></div>
+                                    <p class="text-base font-semibold text-[#A855F7]">09h30 – 13h00</p>
+                                    <h3 class="text-base font-semibold text-slate-50 mb-1">Conférences Plénières – JSNAIFE 26</h3>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">Séance de conférences plénières avec les intervenants invités.</p>
+                                </div>
+
+                                <div class="relative">
+                                    <div class="absolute -left-[1.69rem] sm:-left-[2.19rem] h-3 w-3 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] shadow-[0_0_0_4px_rgba(139,92,246,0.25)]"></div>
+                                    <p class="text-base font-semibold text-[#A855F7]">11h00 – 11h30</p>
+                                    <h3 class="text-base font-semibold text-slate-50 mb-1">Pause-café</h3>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">Temps de pause pour se détendre et échanger entre participants.</p>
+                                </div>
+
+                                <div class="relative">
+                                    <div class="absolute -left-[1.69rem] sm:-left-[2.19rem] h-3 w-3 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] shadow-[0_0_0_4px_rgba(139,92,246,0.25)]"></div>
+                                    <p class="text-base font-semibold text-[#A855F7]">11h30 – 13h00</p>
+                                    <h3 class="text-base font-semibold text-slate-50 mb-1">Conférences Plénières – JSNAIFE 26 (suite)</h3>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">Suite des conférences plénières avec les intervenants invités.</p>
+                                </div>
+
+                                <div class="relative">
+                                    <div class="absolute -left-[1.69rem] sm:-left-[2.19rem] h-3 w-3 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] shadow-[0_0_0_4px_rgba(139,92,246,0.25)]"></div>
+                                    <p class="text-base font-semibold text-[#A855F7]">13h00 – 13h30</p>
+                                    <h3 class="text-base font-semibold text-slate-50 mb-1">Discussions</h3>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">Séance de discussions interactives et questions/réponses.</p>
+                                </div>
+
+                                <div class="relative">
+                                    <div class="absolute -left-[1.69rem] sm:-left-[2.19rem] h-3 w-3 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] shadow-[0_0_0_4px_rgba(139,92,246,0.25)]"></div>
+                                    <p class="text-base font-semibold text-[#A855F7]">13h30 – 15h00</p>
+                                    <h3 class="text-base font-semibold text-slate-50 mb-1">Déjeuner</h3>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">Pause déjeuner et temps de networking entre participants, intervenants et exposants.</p>
+                                </div>
+
+                                <div class="relative">
+                                    <div class="absolute -left-[1.69rem] sm:-left-[2.19rem] h-3 w-3 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] shadow-[0_0_0_4px_rgba(139,92,246,0.25)]"></div>
+                                    <p class="text-base font-semibold text-[#A855F7]">15h00 – 17h00</p>
+                                    <h3 class="text-base font-semibold text-slate-50 mb-1">Workshop/Atelier</h3>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">Session pratique d'atelier animée par les experts invités.</p>
+                                </div>
+
+                                <div class="relative">
+                                    <div class="absolute -left-[1.69rem] sm:-left-[2.19rem] h-3 w-3 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] shadow-[0_0_0_4px_rgba(139,92,246,0.25)]"></div>
+                                    <p class="text-base font-semibold text-[#A855F7]">17h00 – 17h15</p>
+                                    <h3 class="text-base font-semibold text-slate-50 mb-1">Clôture de la journée Scientifique Nationale</h3>
+                                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">Cérémonie de clôture et remise d'attestations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800/80">
+        <div class="max-w-6xl mx-auto py-6 text-center text-xs sm:text-sm text-slate-400">
+            Journée nationale sur l'Intelligence Artificielle 2026 – Prompts, Applications et Innovation
+        </div>
+    </footer>
+         
+
+    <!-- Minimal vanilla JS: mobile menu + active nav + offset scroll -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const header = document.getElementById("site-header");
+            const mobileButton = document.getElementById("mobile-menu-button");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const navLinks = document.querySelectorAll("[data-nav-link]");
+            const sections = Array.from(document.querySelectorAll("section[data-section]"));
+
+            // Mobile menu toggle
+            if (mobileButton && mobileMenu) {
+                mobileButton.addEventListener("click", function () {
+                    mobileMenu.classList.toggle("hidden");
+                });
+            }
+
+            // Smooth scroll with header offset
+            navLinks.forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    const href = link.getAttribute("href");
+                    if (!href || !href.startsWith("#")) return;
+
+                    const targetId = href.substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (!targetSection) return;
+
+                    event.preventDefault();
+
+                    const headerHeight = header ? header.offsetHeight : 0;
+                    const rect = targetSection.getBoundingClientRect();
+                    const offset = rect.top + window.scrollY - headerHeight + 1;
+
+                    window.scrollTo({
+                        top: offset,
+                        behavior: "smooth",
+                    });
+
+                    // Close mobile menu after navigation
+                    if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+                        mobileMenu.classList.add("hidden");
+                    }
+                });
+            });
+
+            // Active menu highlight on scroll
+            function updateActiveLink() {
+                const headerHeight = header ? header.offsetHeight : 0;
+                const scrollPos = window.scrollY + headerHeight + 16;
+                let activeId = "";
+
+                for (const section of sections) {
+                    const top = section.offsetTop;
+                    const bottom = top + section.offsetHeight;
+                    if (scrollPos >= top && scrollPos < bottom) {
+                        activeId = section.id;
+                        break;
+                    }
+                }
+
+                navLinks.forEach(function (link) {
+                    const href = link.getAttribute("href") || "";
+                    const id = href.startsWith("#") ? href.substring(1) : "";
+                    if (id === activeId) {
+                        link.classList.add(
+                            "text-purple-400",
+                            "border-b-2",
+                            "border-purple-500"
+                        );
+                    } else {
+                        link.classList.remove(
+                            "text-purple-400",
+                            "border-b-2",
+                            "border-purple-500"
+                        );
+                    }
+                });
+            }
+
+            updateActiveLink();
+            window.addEventListener("scroll", updateActiveLink);
+        });
+    </script>
+</body>
+</html>
